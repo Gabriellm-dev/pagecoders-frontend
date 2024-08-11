@@ -1,0 +1,21 @@
+.books-page {
+    padding: 20px;
+  }
+  
+  .content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .book-list-container {
+    width: 60%;
+  }
+  
+  .book-form-container {
+    width: 35%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  

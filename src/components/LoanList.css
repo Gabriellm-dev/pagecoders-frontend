@@ -1,0 +1,49 @@
+.loan-list {
+    padding: 20px;
+  }
+  
+  .loan-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .loan-list li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .authorize-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .authorize-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .return-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .return-button:hover {
+    background-color: #218838;
+  }
+  
+  .error-message {
+    color: #dc3545;
+  }
+  

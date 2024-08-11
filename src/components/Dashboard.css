@@ -1,0 +1,38 @@
+.dashboard {
+    padding: 20px;
+  }
+  
+  .dashboard h2 {
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-links {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .dashboard-link {
+    display: block;
+    margin: 10px 0;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .dashboard-link:hover {
+    text-decoration: underline;
+  }
+  
+  .logout-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .logout-button:hover {
+    background-color: #c82333;
+  }
+  
