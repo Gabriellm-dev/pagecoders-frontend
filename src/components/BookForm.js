@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { addBook } from '../services/api';
+import { jwtDecode } from 'jwt-decode'; // Correção na importação
 
 const BookForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,19 @@ const BookForm = () => {
     genre: ''
   });
   const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    // Pega o token do localStorage e decodifica para obter o CPF do usuário
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = jwtDecode(token); // Usando jwtDecode corretamente
+      const userCpf = decodedToken.cpf; // Supondo que o CPF está armazenado no token
+      setFormData(prevFormData => ({
+        ...prevFormData,
+        fkUserCpf: userCpf
+      }));
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,7 +41,7 @@ const BookForm = () => {
       await addBook(formData);
       setMessage('Livro adicionado com sucesso');
       setFormData({
-        fkUserCpf: '',
+        fkUserCpf: formData.fkUserCpf, // Mantém o CPF do usuário logado
         name: '',
         publisher: '',
         publicationDate: '',
@@ -45,14 +59,6 @@ const BookForm = () => {
     <div>
       <h2>Adicionar Livro</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="fkUserCpf"
-          placeholder="CPF do Usuário"
-          value={formData.fkUserCpf}
-          onChange={handleChange}
-          required
-        />
         <input
           type="text"
           name="name"

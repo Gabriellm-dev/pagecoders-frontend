@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getBooks, updateBook, deleteBook } from '../services/api';
+import { jwtDecode } from 'jwt-decode';
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
@@ -17,8 +18,15 @@ const BookList = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await getBooks();
-        setBooks(response.data);
+        const token = localStorage.getItem('token');
+        if (token) {
+          const decodedToken = jwtDecode(token);
+          const userCpf = decodedToken.cpf;
+
+          const response = await getBooks();
+          const userBooks = response.data.filter(book => book.fkUserCpf === userCpf);
+          setBooks(userBooks);
+        }
       } catch (error) {
         console.error('Erro ao buscar livros:', error);
         setMessage('Erro ao buscar livros. Tente novamente.');
@@ -73,7 +81,7 @@ const BookList = () => {
 
   return (
     <div>
-      <h1>Lista de Livros</h1>
+      <h2>Meus Livros</h2>
       {message && <p>{message}</p>}
       <ul>
         {books.map((book) => (

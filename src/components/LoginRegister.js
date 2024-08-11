@@ -60,7 +60,7 @@ const LoginRegister = ({ onLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
+  
     // Se for login, não valida estado e CEP
     if (!isLogin) {
       // Verificação do estado
@@ -68,14 +68,20 @@ const LoginRegister = ({ onLogin }) => {
         setError('Por favor, insira um estado válido.');
         return;
       }
-
+  
       // Verificação do CEP
       if (formData.zip.length !== 8) {
         setError('O CEP deve conter exatamente 8 dígitos.');
         return;
       }
     }
-
+  
+    // Converte o valor de 'number' para inteiro, ou null se estiver vazio
+    const formDataToSend = {
+      ...formData,
+      number: formData.number ? parseInt(formData.number, 10) : null,
+    };
+  
     try {
       if (isLogin) {
         const response = await loginUser({ email: formData.email, password: formData.password });
@@ -84,7 +90,7 @@ const LoginRegister = ({ onLogin }) => {
         onLogin(token);
         navigate('/dashboard');
       } else {
-        await registerUser(formData);
+        await registerUser(formDataToSend);
         setIsLogin(true);
         setFormData({
           email: '',
@@ -104,6 +110,7 @@ const LoginRegister = ({ onLogin }) => {
       console.error('Erro ao autenticar:', error.response?.data || error.message);
     }
   };
+  
 
   return (
     <div className="auth-container">
