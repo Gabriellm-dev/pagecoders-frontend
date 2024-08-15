@@ -1,76 +1,55 @@
 /* Container principal da página de livros */
 .books-page {
   padding: 20px;
-  background-color: #f4f4f4; /* Adiciona um fundo suave */
+  background-color: #f4f4f4; /* Fundo suave */
 }
 
 /* Container que alinha os componentes na página */
 .content-container {
   display: flex;
   justify-content: space-between;
-  gap: 20px; /* Adiciona espaço entre os containers */
+  gap: 20px; /* Espaço entre os containers */
   align-items: flex-start;
 }
 
 /* Estiliza o container da lista de livros */
-.book-list-container {
-  width: 60%;
+.book-list-container, .other-user-books-container {
+  width: 45%;
+  padding: 20px;
+  border: 1px solid #ddd; /* Cor da borda suave */
+  border-radius: 8px; /* Arredondamento das bordas */
+  background-color: #fff; /* Fundo branco */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 /* Estiliza o container do formulário de livros */
 .book-form-container {
   width: 35%;
   padding: 20px;
-  border: 1px solid #ddd; /* Muda a cor da borda para um tom mais suave */
-  border-radius: 8px; /* Aumenta o arredondamento das bordas */
-  background-color: #fff; /* Adiciona um fundo branco ao formulário */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave */
-}
-
-/* Estiliza os inputs e botões no formulário */
-.book-form-container input,
-.book-form-container button {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px; /* Espaçamento entre os elementos */
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-/* Estiliza o botão */
-.book-form-container button {
-  background-color: #007bff; /* Cor de fundo azul */
-  color: #fff; /* Cor do texto branco */
-  border: none;
-  cursor: pointer;
-  font-size: 16px; /* Tamanho da fonte do botão */
-  transition: background-color 0.3s; /* Transição suave para a cor de fundo */
-}
-
-/* Adiciona um efeito ao passar o mouse sobre o botão */
-.book-form-container button:hover {
-  background-color: #0056b3; /* Cor de fundo azul escuro ao passar o mouse */
+  border: 1px solid #ddd; /* Cor da borda suave */
+  border-radius: 8px; /* Arredondamento das bordas */
+  background-color: #fff; /* Fundo branco */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 /* Estiliza os itens da lista de livros */
-.book-list-container ul {
+.book-list-container ul, .other-user-books-container ul {
   list-style-type: none; /* Remove marcadores padrão */
   padding: 0;
 }
 
-.book-list-container li {
+.book-list-container li, .other-user-books-container li {
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ddd; /* Borda leve para os itens da lista */
+  border: 1px solid #ddd; /* Borda leve */
   border-radius: 4px;
-  background-color: #fff; /* Fundo branco para itens da lista */
+  background-color: #fff; /* Fundo branco */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra leve */
 }
 
 /* Estiliza os botões de edição e exclusão */
 .book-list-container button {
-  background-color: #28a745; /* Cor de fundo verde para edição */
+  background-color: #28a745; /* Fundo verde para edição */
   color: #fff;
   border: none;
   cursor: pointer;
@@ -83,15 +62,15 @@
 
 /* Efeito ao passar o mouse sobre o botão de edição */
 .book-list-container button.edit-button:hover {
-  background-color: #218838; /* Cor de fundo verde escuro para edição */
+  background-color: #218838; /* Fundo verde escuro */
 }
 
 /* Efeito ao passar o mouse sobre o botão de exclusão */
 .book-list-container button.delete-button {
-  background-color: #dc3545; /* Cor de fundo vermelha para exclusão */
+  background-color: #dc3545; /* Fundo vermelho */
   margin-left: 5px;
 }
 
 .book-list-container button.delete-button:hover {
-  background-color: #c82333; /* Cor de fundo vermelha escura para exclusão */
+  background-color: #c82333; /* Fundo vermelho escuro */
 }
