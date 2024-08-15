@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { addBook } from '../services/api';
-import { jwtDecode } from 'jwt-decode'; // Correção na importação
+import { jwtDecode } from 'jwt-decode';
 
-const BookForm = () => {
+const BookForm = ({ onBookAdded }) => {
   const [formData, setFormData] = useState({
     fkUserCpf: '',
     name: '',
@@ -15,11 +15,10 @@ const BookForm = () => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    // Pega o token do localStorage e decodifica para obter o CPF do usuário
     const token = localStorage.getItem('token');
     if (token) {
-      const decodedToken = jwtDecode(token); // Usando jwtDecode corretamente
-      const userCpf = decodedToken.cpf; // Supondo que o CPF está armazenado no token
+      const decodedToken = jwtDecode(token);
+      const userCpf = decodedToken.cpf;
       setFormData(prevFormData => ({
         ...prevFormData,
         fkUserCpf: userCpf
@@ -38,10 +37,11 @@ const BookForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addBook(formData);
+      const newBook = await addBook(formData);
       setMessage('Livro adicionado com sucesso');
+      onBookAdded(newBook.data);
       setFormData({
-        fkUserCpf: formData.fkUserCpf, // Mantém o CPF do usuário logado
+        fkUserCpf: formData.fkUserCpf,
         name: '',
         publisher: '',
         publicationDate: '',

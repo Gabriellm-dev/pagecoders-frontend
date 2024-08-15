@@ -26,7 +26,7 @@ const OtherUserBooksList = () => {
       <ul>
         {books.map((book) => (
           <li key={book.code}>
-            {book.title} - {book.genre} - {book.fkUserCpf}
+            Livro: {book.title}, Gênero: {book.genre}, Dono: {book.ownerName}
           </li>
         ))}
       </ul>

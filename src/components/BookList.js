@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getBooks, updateBook, deleteBook } from '../services/api';
 import { jwtDecode } from 'jwt-decode';
 
-const BookList = () => {
+const BookList = ({ newBook }) => {
   const [books, setBooks] = useState([]);
   const [editingBook, setEditingBook] = useState(null);
   const [editFormData, setEditFormData] = useState({
@@ -24,7 +24,7 @@ const BookList = () => {
           const userCpf = decodedToken.cpf;
 
           const response = await getBooks();
-          const userBooks = response.data.filter(book => book.fkUserCpf === userCpf);
+          const userBooks = response.data.filter(book => book.userCpf === userCpf);
           setBooks(userBooks);
         }
       } catch (error) {
@@ -35,6 +35,13 @@ const BookList = () => {
 
     fetchBooks();
   }, []);
+
+  // Atualiza a lista quando um novo livro é adicionado
+  useEffect(() => {
+    if (newBook) {
+      setBooks(prevBooks => [...prevBooks, newBook]);
+    }
+  }, [newBook]);
 
   const handleEditChange = (e) => {
     setEditFormData({ ...editFormData, [e.target.name]: e.target.value });
