@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getUsers, deleteUser } from '../services/api';
-import './UserList.css'; // Supondo que você tenha um arquivo CSS para estilização
+import './UserList.css';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);

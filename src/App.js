@@ -2,13 +2,11 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import LoginRegister from './components/LoginRegister';
 import Dashboard from './components/Dashboard';
-import BookList from './components/BookList';
-import BookForm from './components/BookForm';
 import UserList from './components/UserList';
 import UserForm from './components/UserForm';
-import LoanList from './components/LoanList';
+import LoanPage from './components/LoanPage';
 import RatingList from './components/RatingList';
-import BooksPage from './components/BooksPage'; // Certifique-se de que você realmente precisa do BooksPage
+import BooksPage from './components/BooksPage';
 import './App.css';
 
 const App = () => {
@@ -32,7 +30,7 @@ const App = () => {
         <Route path="/books" element={token ? <BooksPage /> : <Navigate to="/" />} />
         <Route path="/users" element={token ? <UserList /> : <Navigate to="/" />} />
         <Route path="/add-user" element={token ? <UserForm /> : <Navigate to="/" />} />
-        <Route path="/loans" element={token ? <LoanList /> : <Navigate to="/" />} />
+        <Route path="/loans" element={token ? <LoanPage /> : <Navigate to="/" />} />  {/* Atualizado para LoanPage */}
         <Route path="/ratings" element={token ? <RatingList /> : <Navigate to="/" />} />
       </Routes>
     </div>

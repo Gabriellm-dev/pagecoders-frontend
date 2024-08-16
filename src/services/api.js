@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Cria uma instância do axios com configurações padrão
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3000/api', // Use variável de ambiente para a URL
+  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3000/api',
 });
 
 // Adiciona um interceptor para adicionar o token de autorização aos cabeçalhos

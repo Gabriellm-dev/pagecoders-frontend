@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { registerUser, updateUser } from '../services/api';
-import './UserForm.css'; // Supondo que você tenha um arquivo CSS para estilização
+import './UserForm.css';
 
 const UserForm = ({ isEdit, existingUser }) => {
   const [formData, setFormData] = useState({

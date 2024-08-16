@@ -125,7 +125,7 @@ const LoginRegister = ({ onLogin }) => {
               placeholder="CPF"
               value={formData.cpf}
               onChange={handleChange}
-              maxLength={11} // Limite de 11 dígitos
+              maxLength={11}
               required
             />
             <input
@@ -134,7 +134,7 @@ const LoginRegister = ({ onLogin }) => {
               placeholder="Name"
               value={formData.name}
               onChange={handleChange}
-              maxLength={100} // Limite de caracteres
+              maxLength={100}
               required
             />
             <input
@@ -143,15 +143,15 @@ const LoginRegister = ({ onLogin }) => {
               placeholder="Street"
               value={formData.street}
               onChange={handleChange}
-              maxLength={150} // Limite de caracteres
+              maxLength={150}
             />
             <input
-              type="text" // Alterado para 'text' para compatibilidade
+              type="text"
               name="number"
               placeholder="Number"
               value={formData.number}
               onChange={handleChange}
-              maxLength={10} // Limite de caracteres
+              maxLength={10}
             />
             <input
               type="text"
@@ -159,7 +159,7 @@ const LoginRegister = ({ onLogin }) => {
               placeholder="Neighborhood"
               value={formData.neighborhood}
               onChange={handleChange}
-              maxLength={100} // Limite de caracteres
+              maxLength={100}
             />
             <input
               type="text"
@@ -167,7 +167,7 @@ const LoginRegister = ({ onLogin }) => {
               placeholder="City"
               value={formData.city}
               onChange={handleChange}
-              maxLength={100} // Limite de caracteres
+              maxLength={100}
             />
             <input
               type="text"
@@ -175,7 +175,7 @@ const LoginRegister = ({ onLogin }) => {
               placeholder="State"
               value={formData.state}
               onChange={handleChange}
-              maxLength={2} // Limite de 2 caracteres
+              maxLength={2}
               required
             />
             <input
@@ -184,7 +184,7 @@ const LoginRegister = ({ onLogin }) => {
               placeholder="ZIP Code"
               value={formData.zip}
               onChange={handleChange}
-              maxLength={8} // Limite de 8 caracteres
+              maxLength={8}
               required
             />
           </>

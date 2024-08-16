@@ -1,0 +1,16 @@
+.loan-page {
+    padding: 20px;
+  }
+  
+  .loan-sections {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .loan-section {
+    flex: 1;
+    min-width: 300px;
+  }
+  

@@ -1,49 +1,65 @@
 .loan-list {
-    padding: 20px;
-  }
-  
-  .loan-list ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .loan-list li {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .authorize-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .authorize-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .return-button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .return-button:hover {
-    background-color: #218838;
-  }
-  
-  .error-message {
-    color: #dc3545;
-  }
-  
+  padding: 20px;
+  max-width: 600px; /* Define uma largura máxima para centralizar a lista */
+  margin: 0 auto; /* Centraliza a lista na página */
+}
+
+.loan-list ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; /* Remove a margem padrão */
+}
+
+.loan-list li {
+  margin: 15px 0; /* Aumenta o espaço entre os itens */
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Aumenta o arredondamento das bordas */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra leve */
+  background-color: #fff; /* Fundo branco para destacar os itens */
+}
+
+.loan-list li:hover {
+  background-color: #f9f9f9; /* Muda a cor de fundo ao passar o mouse */
+}
+
+.authorize-button,
+.return-button {
+  font-size: 14px; /* Ajusta o tamanho da fonte dos botões */
+  padding: 8px 12px; /* Aumenta o espaçamento interno dos botões */
+}
+
+.authorize-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transição suave para o hover */
+}
+
+.authorize-button:hover {
+  background-color: #0056b3;
+}
+
+.return-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transição suave para o hover */
+}
+
+.return-button:hover {
+  background-color: #218838;
+}
+
+.error-message {
+  color: #dc3545;
+  font-weight: bold; /* Deixa a mensagem de erro em negrito */
+  text-align: center; /* Centraliza a mensagem de erro */
+}
