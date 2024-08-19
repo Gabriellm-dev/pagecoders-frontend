@@ -1,22 +1,22 @@
 .loan-form {
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 8px; /* Bordas suavizadas */
-  background-color: #f3f3f3; /* Cor de fundo ligeiramente mais escura */
-  max-width: 400px; /* Largura máxima para um layout mais compacto */
-  margin: 0 auto; /* Centralização horizontal */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Leve sombra para destacar o formulário */
+  border-radius: 8px;
+  background-color: #f3f3f3;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .loan-form input,
 .loan-form select {
   display: block;
   width: 100%;
-  margin: 15px 0; /* Espaçamento aumentado para mais espaço visual */
+  margin: 15px 0;
   padding: 12px;
-  border: 1px solid #ccc; /* Borda mais clara */
+  border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px; /* Fonte maior para melhorar a legibilidade */
+  font-size: 16px;
 }
 
 .loan-form button {
@@ -25,9 +25,9 @@
   border-radius: 5px;
   background-color: #007bff;
   color: white;
-  font-size: 16px; /* Fonte maior no botão */
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Transição suave no hover */
+  transition: background-color 0.3s ease;
 }
 
 .loan-form button:hover {
@@ -35,8 +35,8 @@
 }
 
 .message {
-  margin-top: 15px; /* Espaçamento aumentado acima da mensagem */
+  margin-top: 15px;
   color: #28a745;
-  font-weight: bold; /* Texto mais chamativo */
-  text-align: center; /* Centralização da mensagem de feedback */
+  font-weight: bold;
+  text-align: center;
 }

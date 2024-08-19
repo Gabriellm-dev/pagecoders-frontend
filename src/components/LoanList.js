@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 import { getLoans, authorizeLoan, returnLoan } from '../services/api';
 import './LoanList.css';
 
@@ -6,26 +7,44 @@ const LoanList = () => {
   const [loans, setLoans] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [userCpf, setUserCpf] = useState('');
 
   useEffect(() => {
-    const fetchLoans = async () => {
-      try {
-        const response = await getLoans();
-        const userCpf = localStorage.getItem('cpf');
-        const filteredLoans = response.data.filter(loan =>
-          loan.userCpf === userCpf || loan.bookOwnerCpf === userCpf
-        );
-        setLoans(filteredLoans);
-      } catch (err) {
-        setError('Erro ao carregar empréstimos.');
-        console.error(err);
-      } finally {
-        setLoading(false);
+    const fetchUserCpf = () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const decodedToken = jwtDecode(token);
+          setUserCpf(decodedToken.cpf);
+        } catch (error) {
+          console.error('Erro ao decodificar o token:', error);
+          setError('Erro ao obter o CPF do usuário.');
+        }
+      } else {
+        setError('Token não encontrado. Faça o login novamente.');
       }
     };
 
+    const fetchLoans = async () => {
+      if (userCpf) {
+        try {
+          const response = await getLoans();
+          const filteredLoans = response.data.filter(loan =>
+            loan.userCpf === userCpf || loan.bookOwnerCpf === userCpf
+          );
+          setLoans(filteredLoans);
+        } catch (err) {
+          setError('Erro ao carregar empréstimos.');
+          console.error('Erro ao carregar empréstimos:', err.response ? err.response.data : err.message);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchUserCpf();
     fetchLoans();
-  }, []);
+  }, [userCpf]);
 
   const handleAuthorize = async (loanId) => {
     try {
@@ -35,7 +54,7 @@ const LoanList = () => {
       ));
     } catch (err) {
       setError('Erro ao autorizar empréstimo.');
-      console.error(err);
+      console.error('Erro ao autorizar empréstimo:', err.response ? err.response.data : err.message);
     }
   };
 
@@ -47,7 +66,7 @@ const LoanList = () => {
       ));
     } catch (err) {
       setError('Erro ao devolver empréstimo.');
-      console.error(err);
+      console.error('Erro ao devolver empréstimo:', err.response ? err.response.data : err.message);
     }
   };
 

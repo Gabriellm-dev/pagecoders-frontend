@@ -12,6 +12,10 @@ import './App.css';
 const App = () => {
   const [token, setToken] = React.useState(localStorage.getItem('token'));
 
+  React.useEffect(() => {
+    console.log('Token atual:', token);
+  }, [token]);
+
   const handleLogin = (newToken) => {
     setToken(newToken);
     localStorage.setItem('token', newToken);
@@ -30,11 +34,12 @@ const App = () => {
         <Route path="/books" element={token ? <BooksPage /> : <Navigate to="/" />} />
         <Route path="/users" element={token ? <UserList /> : <Navigate to="/" />} />
         <Route path="/add-user" element={token ? <UserForm /> : <Navigate to="/" />} />
-        <Route path="/loans" element={token ? <LoanPage /> : <Navigate to="/" />} />  {/* Atualizado para LoanPage */}
+        <Route path="/loans" element={token ? <LoanPage /> : <Navigate to="/" />} />
         <Route path="/ratings" element={token ? <RatingList /> : <Navigate to="/" />} />
       </Routes>
     </div>
   );
 };
+
 
 export default App;

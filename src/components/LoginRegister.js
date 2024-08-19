@@ -60,26 +60,23 @@ const LoginRegister = ({ onLogin }) => {
     e.preventDefault();
     setError('');
   
-    
     if (!isLogin) {
-      
       if (!estadosValidos.includes(formData.state)) {
         setError('Por favor, insira um estado válido.');
         return;
       }
   
-      
       if (formData.zip.length !== 8) {
         setError('O CEP deve conter exatamente 8 dígitos.');
         return;
       }
     }
   
-    
     const formDataToSend = {
       ...formData,
       number: formData.number ? parseInt(formData.number, 10) : null,
     };
+    
   
     try {
       if (isLogin) {

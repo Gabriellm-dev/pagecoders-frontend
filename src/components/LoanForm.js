@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { addLoan, getAvailableBooks } from '../services/api'; // Certifique-se de que getAvailableBooks traz todos os livros
+import { jwtDecode } from 'jwt-decode';
+import { addLoan, getAvailableBooks } from '../services/api';
 import './LoanForm.css';
 
 const LoanForm = () => {
@@ -9,25 +10,22 @@ const LoanForm = () => {
   });
   const [availableBooks, setAvailableBooks] = useState([]);
   const [message, setMessage] = useState('');
+  const [userCpf, setUserCpf] = useState('');
 
-  // Obtenha o CPF do usuário logado do localStorage
-  const userCpf = localStorage.getItem('cpf');
-
-  // Adicione uma verificação para garantir que o CPF está sendo encontrado
   useEffect(() => {
-    if (!userCpf) {
-      console.error('CPF do usuário não encontrado no localStorage.');
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      setUserCpf(decodedToken.cpf);
+    } else {
+      console.error('Token não encontrado no localStorage.');
     }
-  }, [userCpf]);
+  }, []);
 
-  // Filtra os livros disponíveis, excluindo aqueles do usuário logado
   useEffect(() => {
     const fetchAvailableBooks = async () => {
       try {
-        const books = await getAvailableBooks();
-        console.log('Livros disponíveis:', books);
-        
-        // Filtra os livros para excluir os do próprio usuário logado
+        const books = await getAvailableBooks();      
         const filteredBooks = books.filter(book => book.userCpf !== userCpf);
         setAvailableBooks(filteredBooks);
       } catch (error) {
@@ -35,7 +33,9 @@ const LoanForm = () => {
       }
     };
 
-    fetchAvailableBooks();
+    if (userCpf) {
+      fetchAvailableBooks();
+    }
   }, [userCpf]);
 
   const handleChange = (e) => {
@@ -44,12 +44,14 @@ const LoanForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    const loanData = {
+      bookCode: Number(formData.fkBookCode),
+      expectedReturnDate: formData.expectedReturnDate,
+      userCpf: userCpf,
+    };
+  
     try {
-      const loanData = {
-        ...formData,
-        userCpf: userCpf, // Inclui o CPF do usuário logado
-      };
-
       await addLoan(loanData);
       setMessage('Solicitação de empréstimo enviada. O empréstimo será registrado com a data atual ao ser autorizado.');
       setFormData({
@@ -78,7 +80,7 @@ const LoanForm = () => {
             <option value="">Selecione um livro</option>
             {availableBooks.map((book) => (
               <option key={book.code} value={book.code}>
-                {book.title} {/* Atualize para exibir o título do livro */}
+                {book.title}
               </option>
             ))}
           </select>

@@ -36,7 +36,6 @@ const BookList = ({ newBook }) => {
     fetchBooks();
   }, []);
 
-  // Atualiza a lista quando um novo livro é adicionado
   useEffect(() => {
     if (newBook) {
       setBooks(prevBooks => [...prevBooks, newBook]);
