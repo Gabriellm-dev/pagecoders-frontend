@@ -29,26 +29,25 @@ const LoginRegister = ({ onLogin }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Validação e sanitização para CPF
     if (name === 'cpf') {
       const sanitizedValue = value.replace(/\D/g, '');
       setFormData(prevFormData => ({ ...prevFormData, [name]: sanitizedValue }));
     }
-    // Validação e sanitização para Estado
+    
     else if (name === 'state') {
       const upperCaseValue = value.toUpperCase();
       if (upperCaseValue.length <= 2) {
         setFormData(prevFormData => ({ ...prevFormData, [name]: upperCaseValue }));
       }
     }
-    // Validação e sanitização para CEP
+    
     else if (name === 'zip') {
       const sanitizedValue = value.replace(/\D/g, '');
       if (sanitizedValue.length <= 8) {
         setFormData(prevFormData => ({ ...prevFormData, [name]: sanitizedValue }));
       }
     }
-    // Validação e sanitização para outros campos
+    
     else {
       setFormData(prevFormData => ({
         ...prevFormData,
@@ -61,22 +60,22 @@ const LoginRegister = ({ onLogin }) => {
     e.preventDefault();
     setError('');
   
-    // Se for login, não valida estado e CEP
+    
     if (!isLogin) {
-      // Verificação do estado
+      
       if (!estadosValidos.includes(formData.state)) {
         setError('Por favor, insira um estado válido.');
         return;
       }
   
-      // Verificação do CEP
+      
       if (formData.zip.length !== 8) {
         setError('O CEP deve conter exatamente 8 dígitos.');
         return;
       }
     }
   
-    // Converte o valor de 'number' para inteiro, ou null se estiver vazio
+    
     const formDataToSend = {
       ...formData,
       number: formData.number ? parseInt(formData.number, 10) : null,

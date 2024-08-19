@@ -34,6 +34,15 @@ export const getBooks = () => api.get('/books');
 export const addBook = (bookData) => api.post('/books', bookData);
 export const updateBook = (code, bookData) => api.put(`/books/${code}`, bookData);
 export const deleteBook = (code) => api.delete(`/books/${code}`);
+export const getAvailableBooks = async () => {
+  try {
+    const response = await api.get('/books/available'); // Usando a instância `api` configurada
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao buscar livros disponíveis:', error);
+    throw error;
+  }
+};
 
 // Empréstimos
 export const getLoans = () => api.get('/loans');

@@ -7,17 +7,15 @@ const LoanList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Obtém o CPF do usuário logado
-  const userCpf = localStorage.getItem('cpf');
-
   useEffect(() => {
     const fetchLoans = async () => {
       try {
         const response = await getLoans();
-        const userLoans = response.data.filter(loan => 
-          loan.userCpf === userCpf || loan.book.ownerCpf === userCpf
+        const userCpf = localStorage.getItem('cpf');
+        const filteredLoans = response.data.filter(loan =>
+          loan.userCpf === userCpf || loan.bookOwnerCpf === userCpf
         );
-        setLoans(userLoans);
+        setLoans(filteredLoans);
       } catch (err) {
         setError('Erro ao carregar empréstimos.');
         console.error(err);
@@ -27,7 +25,7 @@ const LoanList = () => {
     };
 
     fetchLoans();
-  }, [userCpf]);
+  }, []);
 
   const handleAuthorize = async (loanId) => {
     try {
